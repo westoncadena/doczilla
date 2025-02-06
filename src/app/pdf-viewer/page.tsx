@@ -4,7 +4,7 @@
 import { EmbedPDF } from '@simplepdf/react-embed-pdf';
 
 const Page = () => {
-    const pdfUrl = '/path/to/your/pdf-file.pdf';  // Update the path to your PDF file
+    // const pdfUrl = 'sales_agreement_template.pdf';  // Update the path to your PDF file
 
     return (
         <div>

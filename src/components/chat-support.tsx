@@ -17,9 +17,6 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { useChat } from "ai/react";
 import { useEffect, useRef, useState } from "react";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-// import CodeDisplayBlock from "./code-display-block";
 
 export default function ChatSupport() {
     const [isGenerating, setIsGenerating] = useState(false);
@@ -85,7 +82,7 @@ export default function ChatSupport() {
                     <ChatBubble variant="received">
                         <ChatBubbleAvatar src="" fallback="🤖" />
                         <ChatBubbleMessage>
-                            Hello! I'm the AI assistant. How can I help you today?
+                            Hello! I am the AI assistant. How can I help you today?
                         </ChatBubbleMessage>
                     </ChatBubble>
 
