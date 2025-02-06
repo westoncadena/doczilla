@@ -37,7 +37,7 @@ const HTMLEditor: React.FC = () => {
     return (
         <Card className="w-[100vh] h-[80vh] max-w-full mx-auto">
             <CardHeader>
-                <CardTitle>HTML Editor</CardTitle>
+                <CardTitle>Template Editor</CardTitle>
             </CardHeader>
             <CardContent>
                 <Tabs defaultValue="editor" className="w-full">

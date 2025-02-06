@@ -8,10 +8,11 @@ const Page = () => {
 
     return (
         <div>
-            <h1>PDF Viewer</h1>
-            <EmbedPDF companyIdentifier="yourcompany">
-                <a href="sales_agreement_template.pdf">Opens sample.pdf</a>
-            </EmbedPDF>
+            <EmbedPDF
+                mode="inline"
+                style={{ width: 900, height: 800 }}
+                documentURL="sales_agreement_template.pdf"
+            />
         </div>
     );
 };

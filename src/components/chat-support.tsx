@@ -17,6 +17,8 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { useChat } from "ai/react";
 import { useEffect, useRef, useState } from "react";
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function ChatSupport() {
     const [isGenerating, setIsGenerating] = useState(false);
@@ -65,10 +67,10 @@ export default function ChatSupport() {
     };
 
     return (
-        <ExpandableChat size="md" position="bottom-right">
+        <ExpandableChat size="xl" position="bottom-right">
             <ExpandableChatHeader className="bg-muted/60 flex-col text-center justify-center">
                 <h1 className="text-xl font-semibold">Chat with Zilla</h1>
-                <p>Use Zilla to create and edit templates</p>
+                <p>Use Zilla to create and edit pdf templates</p>
                 <div className="flex gap-2 items-center pt-2">
                     <Button variant="secondary" onClick={() => setMessages([])}>
                         New Chat
@@ -80,9 +82,9 @@ export default function ChatSupport() {
                 <ChatMessageList className="bg-muted/25" ref={messagesRef}>
                     {/* Initial message */}
                     <ChatBubble variant="received">
-                        <ChatBubbleAvatar src="" fallback="🤖" />
+                        <ChatBubbleAvatar src="doczilla-logo.png" fallback="🤖" />
                         <ChatBubbleMessage>
-                            Hello! I am the AI assistant. How can I help you today?
+                            Hello! I am Zilla the assistant. How can I help you create a template today?
                         </ChatBubbleMessage>
                     </ChatBubble>
 
@@ -100,7 +102,7 @@ export default function ChatSupport() {
                                 <ChatBubbleMessage
                                     variant={message.role == "user" ? "sent" : "received"}
                                 >
-                                    {/* {message.content
+                                    {message.content
                                         .split("```")
                                         .map((part: string, index: number) => {
                                             if (index % 2 === 0) {
@@ -112,11 +114,13 @@ export default function ChatSupport() {
                                             } else {
                                                 return (
                                                     <pre className=" pt-2" key={index}>
-                                                        <CodeDisplayBlock code={part} lang="" />
+                                                        {/* <CodeDisplayBlock code={part} lang="" /> */}
+                                                        <p>code</p>
                                                     </pre>
+
                                                 );
                                             }
-                                        })} */}
+                                        })}
                                 </ChatBubbleMessage>
                             </ChatBubble>
                         ))}

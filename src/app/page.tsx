@@ -46,7 +46,7 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link href="/signatures" className="group">
+        <Link href="/sign" className="group">
           <div className="flex flex-col gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1 h-full">
             <div className="h-12 w-12 rounded-lg bg-blue-100 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
               <PenLine className="h-6 w-6 text-blue-600" />
