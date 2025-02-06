@@ -5,8 +5,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      {/* Hero Section */}
+    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <div className="flex flex-col items-center text-center max-w-4xl space-y-6">
         <div className="flex items-center gap-2 text-blue-600 font-medium bg-blue-50 px-4 py-2 rounded-full">
           <Zap size={16} />
@@ -14,10 +13,9 @@ export default function Home() {
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight">
-          Create and Sign Documents with
-          <span className="text-blue-600"> AI Superpowers</span>
+          Create and Sign Documents
         </h1>
-
+        <img src="doczilla-logo.png" alt="Logo" className="mt-6 w-24 h-auto object-contain" />
         <p className="text-lg text-gray-600 max-w-2xl">
           Transform your document workflow with AI-powered creation, editing, and secure digital signatures. Save hours of work with intelligent automation.
         </p>
@@ -35,7 +33,7 @@ export default function Home() {
       {/* Features Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
         <Link href="/templates" className="group">
-          <div className="flex flex-col gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+          <div className="flex flex-col gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1 h-full">
             <div className="h-12 w-12 rounded-lg bg-blue-100 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
               <FileText className="h-6 w-6 text-blue-600" />
             </div>
@@ -47,7 +45,7 @@ export default function Home() {
         </Link>
 
         <Link href="/signatures" className="group">
-          <div className="flex flex-col gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+          <div className="flex flex-col gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1 h-full">
             <div className="h-12 w-12 rounded-lg bg-blue-100 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
               <PenLine className="h-6 w-6 text-blue-600" />
             </div>
@@ -59,7 +57,7 @@ export default function Home() {
         </Link>
 
         <Link href="/ai-assistant" className="group">
-          <div className="flex flex-col gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+          <div className="flex flex-col gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1 h-full">
             <div className="h-12 w-12 rounded-lg bg-blue-100 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
               <Zap className="h-6 w-6 text-blue-600" />
             </div>
@@ -71,7 +69,7 @@ export default function Home() {
         </Link>
       </div>
 
-      {/* Social Proof */}
+      {/* Social Proof
       <div className="flex flex-col items-center gap-6 w-full max-w-4xl">
         <p className="text-sm text-gray-500 uppercase tracking-wider">Trusted by innovative teams</p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 w-full justify-items-center opacity-70">
@@ -79,7 +77,7 @@ export default function Home() {
             <div key={i} className="h-8 w-32 bg-gray-200 rounded animate-pulse" />
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
