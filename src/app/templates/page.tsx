@@ -10,13 +10,13 @@ interface Template {
 }
 
 const TemplatesPage = () => {
-    const [templates, setTemplates] = useState([]);
+    const [templates, setTemplates] = useState<Template[]>([]);
 
     useEffect(() => {
         // Fetch templates from your database or API
         const fetchTemplates = async () => {
             const response = await fetch("/api/templates"); // Adjust the API endpoint as needed
-            const data = await response.json();
+            const data: Template[] = await response.json(); // Cast the fetched data to Template[]
             setTemplates(data);
         };
 
