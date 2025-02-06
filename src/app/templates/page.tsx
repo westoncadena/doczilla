@@ -3,6 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableRow, TableHeader } from "@/components/ui/table"; // Ensure correct import path
 
+
+interface Template {
+    id: string;
+    name: string;
+}
+
 const TemplatesPage = () => {
     const [templates, setTemplates] = useState([]);
 
