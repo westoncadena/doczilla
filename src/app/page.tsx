@@ -21,9 +21,11 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-            Get Started Free
-          </Button>
+          <Link href="/templates">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+              Get Started Free
+            </Button>
+          </Link>
           <Button size="lg" variant="outline">
             Watch Demo
           </Button>

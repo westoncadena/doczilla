@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableRow, TableHeader } from "@/components/ui/table"; // Ensure correct import path
+import { Button } from "@/components/ui/button"
 
 
 interface Template {
@@ -13,21 +14,30 @@ const TemplatesPage = () => {
     const [templates, setTemplates] = useState<Template[]>([]);
 
     useEffect(() => {
-        // Fetch templates from your database or API
+        // Mock fetch templates from your database or API
         const fetchTemplates = async () => {
-            const response = await fetch("/api/templates"); // Adjust the API endpoint as needed
-            const data: Template[] = await response.json(); // Cast the fetched data to Template[]
-            setTemplates(data);
+            // const response = await fetch("/api/templates"); // Adjust the API endpoint as needed
+            // const data: Template[] = await response.json(); // Cast the fetched data to Template[]
+            // setTemplates(data);
+            // Mock data
+            const mockData: Template[] = [
+                { id: "1", name: "Sales Agreement Template" },
+                { id: "2", name: "Letter of Intent Template" },
+                { id: "3", name: "Invoice Template" },
+            ];
+            // Simulate a delay like a real fetch
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setTemplates(mockData); // Set the mock data
         };
 
         fetchTemplates();
     }, []);
 
     return (
-        <Table>
+        <Table className="w-full">
             <TableHeader>
                 <TableRow>
-                    <TableHead>Template Name</TableHead>
+                    <TableHead>Template</TableHead>
                     <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
@@ -35,10 +45,10 @@ const TemplatesPage = () => {
                 {templates.map((template) => (
                     <TableRow key={template.id}>
                         <TableCell>{template.name}</TableCell>
-                        <TableCell>
-                            {/* Add action buttons or links here */}
-                            <button>View</button>
-                            <button>Download</button>
+                        <TableCell className="flex space-x-2">
+                            <Button>Edit</Button>
+                            <Button>Download</Button>
+                            <Button>Fill Out</Button>
                         </TableCell>
                     </TableRow>
                 ))}
