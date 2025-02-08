@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { FileText, PenLine, Zap } from "lucide-react";
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight">
           Create and Sign Documents
         </h1>
-        <img src="doczilla-logo.png" alt="Logo" className="mt-6 w-24 h-auto object-contain" />
+        <Image src="/doczilla-logo.png" alt="Logo" className="mt-6 w-24 h-auto object-contain" width={96} height={24} />
         <p className="text-lg text-gray-600 max-w-2xl">
           Transform your document workflow with AI-powered creation, editing, and secure digital signatures. Save hours of work with intelligent automation.
         </p>

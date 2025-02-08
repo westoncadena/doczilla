@@ -34,8 +34,8 @@ const items = [
         icon: Signature,
     },
     {
-        title: "Settings",
-        url: "#",
+        title: "Voice Agent",
+        url: "/voice-agent",
         icon: Settings,
     },
 ]

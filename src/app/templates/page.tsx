@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableRow, TableHeader } from "@/components/ui/table"; // Ensure correct import path
 import { Button } from "@/components/ui/button"
+import Link from 'next/link';
 
 
 interface Template {
@@ -24,6 +25,7 @@ const TemplatesPage = () => {
                 { id: "1", name: "Sales Agreement Template" },
                 { id: "2", name: "Letter of Intent Template" },
                 { id: "3", name: "Invoice Template" },
+                { id: "4", name: "01-339.pdf" },
             ];
             // Simulate a delay like a real fetch
             await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -48,7 +50,7 @@ const TemplatesPage = () => {
                         <TableCell className="flex space-x-2">
                             <Button>Edit</Button>
                             <Button>Download</Button>
-                            <Button>Fill Out</Button>
+                            <Link href="/voice-agent"><Button>Fill Out</Button></Link>
                         </TableCell>
                     </TableRow>
                 ))}
