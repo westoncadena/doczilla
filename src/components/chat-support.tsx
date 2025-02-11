@@ -20,8 +20,13 @@ import { useEffect, useRef, useState } from "react";
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+interface ChatResponse {
+    message: string; // Replace with actual property names
+    data: string; // Replace with actual property names
+}
+
 interface ChatSupportProps {
-    onResponse?: (data: any) => void;
+    onResponse?: (data: ChatResponse) => void;
 }
 
 export default function ChatSupport({ onResponse }: ChatSupportProps) {
@@ -31,7 +36,6 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
         setMessages,
         input,
         handleInputChange,
-        handleSubmit,
         isLoading,
     } = useChat({
         onResponse(response) {

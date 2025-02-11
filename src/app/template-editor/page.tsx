@@ -9,6 +9,11 @@ import { useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import React from 'react';
 
+interface ChatResponse {
+    message: string; // Replace with actual property names
+    data: string; // Replace with actual property names
+}
+
 const TemplateEditorPage: React.FC = () => {
     const searchParams = useSearchParams();
     const templateId = searchParams.get('template');
@@ -94,7 +99,7 @@ const TemplateEditorPage: React.FC = () => {
     };
 
     // Add handler for chat responses
-    const handleChatResponse = (data: any) => {
+    const handleChatResponse = (data: ChatResponse) => {
         if (data.data) {
             setContent(data.data);
             // Add debugging logs
