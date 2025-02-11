@@ -20,7 +20,11 @@ import { useEffect, useRef, useState } from "react";
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-export default function ChatSupport() {
+interface ChatSupportProps {
+    onResponse?: (data: any) => void;
+}
+
+export default function ChatSupport({ onResponse }: ChatSupportProps) {
     const [isGenerating, setIsGenerating] = useState(false);
     const {
         messages,
@@ -53,8 +57,60 @@ export default function ChatSupport() {
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!input) return;
+
         setIsGenerating(true);
-        handleSubmit(e);
+        try {
+            // Add user message first
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                {
+                    id: String(Date.now()),
+                    role: 'user',
+                    content: input
+                },
+            ]);
+
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chatInput: input,
+                    sessionId: '1'
+                }),
+            });
+
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to send message');
+            }
+
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                {
+                    id: String(Date.now()),
+                    role: 'assistant',
+                    content: data.message
+                },
+            ]);
+
+            onResponse?.(data);
+            // Clear the input
+        } catch (error) {
+            console.error('Error sending message:', error);
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                {
+                    id: String(Date.now()),
+                    role: 'assistant',
+                    content: 'Error sending message'
+                },
+            ]);
+        } finally {
+            setIsGenerating(false);
+        }
     };
 
     const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -140,10 +196,10 @@ export default function ChatSupport() {
                         value={input}
                         onChange={handleInputChange}
                         onKeyDown={onKeyDown}
-                        className="min-h-12 bg-background shadow-none "
+                        className="min-h-12 bg-background shadow-none"
                     />
                     <Button
-                        className="absolute top-1/2 right-2 transform  -translate-y-1/2"
+                        className="absolute top-1/2 right-2 transform -translate-y-1/2"
                         type="submit"
                         size="icon"
                         disabled={isLoading || isGenerating || !input}

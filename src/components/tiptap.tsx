@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,8 @@ interface TipTapEditorProps {
 }
 
 const TipTapEditor: React.FC<TipTapEditorProps> = ({ content, onUpdate }) => {
+    console.log('TipTap received content:', content);
+
     const editor = useEditor({
         extensions: [
             StarterKit,
@@ -34,8 +36,13 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content, onUpdate }) => {
         onUpdate: ({ editor }) => {
             onUpdate(editor.getHTML());
         },
-        immediatelyRender: false,
     });
+
+    useEffect(() => {
+        if (editor && content) {
+            editor.commands.setContent(content);
+        }
+    }, [content, editor]);
 
     if (!editor) {
         return null;

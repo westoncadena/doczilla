@@ -56,6 +56,7 @@ const TemplateEditorPage: React.FC = () => {
     }
 
     const handleContentChange = (newContent: string) => {
+        console.log('Content changing to:', newContent);
         setContent(newContent);
     };
 
@@ -89,6 +90,16 @@ const TemplateEditorPage: React.FC = () => {
             console.log('Template saved successfully');
         } catch (error) {
             console.error('Error saving template:', error);
+        }
+    };
+
+    // Add handler for chat responses
+    const handleChatResponse = (data: any) => {
+        if (data.data) {
+            setContent(data.data);
+            // Add debugging logs
+            console.log('Previous content:', content);
+            console.log('New content:', data.data);
         }
     };
 
@@ -133,7 +144,7 @@ const TemplateEditorPage: React.FC = () => {
                     />
                 </div>
                 <div className="flex-1 ml-2">
-                    <ChatSupport />
+                    <ChatSupport onResponse={handleChatResponse} />
                 </div>
             </div>
         </div>
