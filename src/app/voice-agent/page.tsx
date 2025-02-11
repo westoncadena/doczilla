@@ -1,14 +1,17 @@
+'use client';
 import VoiceComponent from "@/components/voice-component";
+import { EmbedPDF } from '@simplepdf/react-embed-pdf';
+
 
 export default function Home() {
   return (
     <main className="flex min-h-screen relative overflow-hidden">
       <div className="flex w-full">
-        <div className="w-1/2">
-          <iframe
-            src="01-339.pdf"
-            className="w-full h-screen"
-            title="PDF Document"
+        <div>
+          <EmbedPDF
+            mode="inline"
+            style={{ width: 900, height: 800 }}
+            documentURL="sales_agreement_template.pdf"
           />
         </div>
         <div className="w-1/2 flex items-center justify-center relative px-8">

@@ -31,11 +31,10 @@ interface ChatSupportProps {
 
 export default function ChatSupport({ onResponse }: ChatSupportProps) {
     const [isGenerating, setIsGenerating] = useState(false);
+    const [inputValue, setInputValue] = useState('');
     const {
         messages,
         setMessages,
-        input,
-        handleInputChange,
         isLoading,
     } = useChat({
         onResponse(response) {
@@ -61,11 +60,11 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!input) return;
+        if (!inputValue) return;
 
         setIsGenerating(true);
         try {
-            // Add user message first
+            const input = inputValue
             setMessages((prevMessages) => [
                 ...prevMessages,
                 {
@@ -74,6 +73,7 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
                     content: input
                 },
             ]);
+            setInputValue('');
 
             const response = await fetch('/api/chat', {
                 method: 'POST',
@@ -101,7 +101,6 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
             ]);
 
             onResponse?.(data);
-            // Clear the input
         } catch (error) {
             console.error('Error sending message:', error);
             setMessages((prevMessages) => [
@@ -120,7 +119,7 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
     const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
-            if (isGenerating || isLoading || !input) return;
+            if (isGenerating || isLoading || !inputValue) return;
             setIsGenerating(true);
             onSubmit(e as unknown as React.FormEvent<HTMLFormElement>);
         }
@@ -156,8 +155,7 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
                                 variant={message.role == "user" ? "sent" : "received"}
                             >
                                 <ChatBubbleAvatar
-                                    src=""
-                                    fallback={message.role == "user" ? "👨🏽" : "🤖"}
+                                    src={message.role == "user" ? "user.jpg" : "doczilla-logo.png"}
                                 />
                                 <ChatBubbleMessage
                                     variant={message.role == "user" ? "sent" : "received"}
@@ -188,7 +186,7 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
                     {/* Loading */}
                     {isGenerating && (
                         <ChatBubble variant="received">
-                            <ChatBubbleAvatar src="" fallback="🤖" />
+                            <ChatBubbleAvatar src="doczilla-logo.png" fallback="🤖" />
                             <ChatBubbleMessage isLoading />
                         </ChatBubble>
                     )}
@@ -197,8 +195,8 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
             <ExpandableChatFooter className="bg-muted/25">
                 <form ref={formRef} className="flex relative gap-2" onSubmit={onSubmit}>
                     <ChatInput
-                        value={input}
-                        onChange={handleInputChange}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={onKeyDown}
                         className="min-h-12 bg-background shadow-none"
                     />
@@ -206,7 +204,7 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
                         className="absolute top-1/2 right-2 transform -translate-y-1/2"
                         type="submit"
                         size="icon"
-                        disabled={isLoading || isGenerating || !input}
+                        disabled={isLoading || isGenerating || !inputValue}
                     >
                         <Send className="size-4" />
                     </Button>

@@ -39,7 +39,7 @@ const items = [
         icon: Signature,
     },
     {
-        title: "Voice Agent",
+        title: "Settings",
         url: "/voice-agent",
         icon: Settings,
     },
