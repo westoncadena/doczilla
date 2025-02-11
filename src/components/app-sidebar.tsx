@@ -29,6 +29,11 @@ const items = [
         icon: Edit,
     },
     {
+        title: "Fill Out",
+        url: "/fill-out",
+        icon: Edit,
+    },
+    {
         title: "Sign",
         url: "/sign",
         icon: Signature,

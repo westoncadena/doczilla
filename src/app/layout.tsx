@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import RootLayoutClient from "@/components/root-layout-client"; // Import the client layout
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,7 @@ export default function RootLayout({
       >
         <SidebarProvider>
           {/* Render RootLayoutClient for client-specific functionality */}
-          <RootLayoutClient>{children}</RootLayoutClient>
+          <RootLayoutClient><Suspense fallback={<div>Loading...</div>}>{children}</Suspense></RootLayoutClient>
         </SidebarProvider>
       </body>
     </html>
