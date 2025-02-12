@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { FileText, PenLine, Zap } from "lucide-react";
+// import { FileText, PenLine, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -22,18 +23,21 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
-          <Link href="/templates">
+          {/* <Link href="/templates">
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
               Get Started Free
             </Button>
+          </Link> */}
+          <Link href="https://youtu.be/mVCEfDU9dxw">
+            <Button size="lg" variant="outline">
+              Watch Demo
+            </Button>
           </Link>
-          <Button size="lg" variant="outline">
-            Watch Demo
-          </Button>
+
         </div>
       </div>
 
-      {/* Features Grid */}
+      {/* Features Grid
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
         <Link href="/templates" className="group">
           <div className="flex flex-col gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1 h-full">
@@ -70,17 +74,9 @@ export default function Home() {
             </p>
           </div>
         </Link>
-      </div>
-
-      {/* Social Proof
-      <div className="flex flex-col items-center gap-6 w-full max-w-4xl">
-        <p className="text-sm text-gray-500 uppercase tracking-wider">Trusted by innovative teams</p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 w-full justify-items-center opacity-70">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-8 w-32 bg-gray-200 rounded animate-pulse" />
-          ))}
-        </div>
       </div> */}
+
+
     </div>
   );
 }
