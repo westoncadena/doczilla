@@ -15,7 +15,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Trash2, FileText, MoreVertical } from 'lucide-react';
+import { FileText, MoreVertical } from 'lucide-react';
 import {
     DropdownMenu,
     DropdownMenuContent,
