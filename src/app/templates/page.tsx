@@ -1,9 +1,8 @@
-"use client"; // This directive marks the component as a client component
+"use client";
 
 import React, { useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableRow, TableHeader } from "@/components/ui/table"; // Ensure correct import path
-import { Button } from "@/components/ui/button"
 import Link from 'next/link';
+import { Button } from "@/components/ui/button";
 import { supabase } from '@/lib/supabaseClient';
 import {
     AlertDialog,
@@ -16,15 +15,20 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Trash2 } from 'lucide-react';
+import { Trash2, FileText, MoreVertical } from 'lucide-react';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Template {
-    id: string;  // Use string for bigint values (IDs) to handle them properly in JS/React
+    id: string;
     name: string;
-    last_edited: string;  // You can also use Date, but for now string works
-    content: string;  // Assuming you want to store the content as text
+    last_edited: string;
+    content: string;
 }
-
 
 const TemplatesPage = () => {
     const [templates, setTemplates] = useState<Template[]>([]);
@@ -54,8 +58,6 @@ const TemplatesPage = () => {
                 .eq('id', template.id);
 
             if (error) throw error;
-
-            // Refresh the templates list
             await fetchTemplates();
         } catch (error) {
             console.error('Error deleting template:', error);
@@ -63,63 +65,88 @@ const TemplatesPage = () => {
     };
 
     return (
-        <div>
-            <div className="flex justify-between mb-4">
+        <div className="p-6">
+            <div className="flex justify-between mb-8">
                 <h1 className="text-2xl font-bold">Templates</h1>
                 <Link href="/template-editor">
                     <Button>New Template</Button>
                 </Link>
             </div>
-            <Table className="w-full">
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>Template Name</TableHead>
-                        <TableHead>Last Edited</TableHead>
-                        <TableHead>Actions</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {templates.map((template) => (
-                        <TableRow key={template.id.toString()}>
-                            <TableCell>{template.name}</TableCell>
-                            <TableCell>{new Date(template.last_edited).toLocaleDateString()}</TableCell>
-                            <TableCell className="flex space-x-2">
-                                <Link href={`/template-editor?template=${template.id}`}>
-                                    <Button>Edit</Button>
-                                </Link>
-                                <Button>Download</Button>
-                                <Link href={`/fill-out?template=${template.id}`}>
-                                    <Button>Fill Out</Button>
-                                </Link>
-                                <AlertDialog>
-                                    <AlertDialogTrigger asChild>
-                                        <Button size="icon">
-                                            <Trash2 className="h-4 w-4" />
-                                        </Button>
-                                    </AlertDialogTrigger>
-                                    <AlertDialogContent>
-                                        <AlertDialogHeader>
-                                            <AlertDialogTitle>Delete Template</AlertDialogTitle>
-                                            <AlertDialogDescription>
-                                                Are you sure you want to delete &quot;{template.name}&quot;? This action cannot be undone.
-                                            </AlertDialogDescription>
-                                        </AlertDialogHeader>
-                                        <AlertDialogFooter>
-                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                            <AlertDialogAction
-                                                onClick={() => handleDelete(template)}
-                                                className="bg-red-600 hover:bg-red-700"
-                                            >
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+                {templates.map((template) => (
+                    <div key={template.id} className="group relative">
+                        <Link href={`/template-editor?template=${template.id}`}>
+                            <div className="cursor-pointer">
+                                {/* Document Preview Card */}
+                                <div className="bg-white border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                                    {/* Document Preview */}
+                                    <div className="aspect-[8.5/11] p-2 border-b bg-gray-50 flex items-center justify-center">
+                                        <div className="flex flex-col items-center space-y-2">
+                                            <FileText className="w-8 h-8 text-gray-600" />
+                                            <div className="w-16 h-1 bg-gray-200 rounded" />
+                                            <div className="w-12 h-1 bg-gray-200 rounded" />
+                                            <div className="w-14 h-1 bg-gray-200 rounded" />
+                                        </div>
+                                    </div>
+
+                                    {/* Document Info */}
+                                    <div className="p-3">
+                                        <h3 className="text-base font-medium truncate">{template.name}</h3>
+                                        <p className="text-sm text-gray-500 mt-1">
+                                            {new Date(template.last_edited).toLocaleDateString()}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </Link>
+
+                        {/* Actions Menu */}
+                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="ghost" size="icon" className="h-6 w-6 bg-white/90 hover:bg-white">
+                                        <MoreVertical className="h-3 w-3" />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                    <Link href={`/template-editor?template=${template.id}`}>
+                                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                                    </Link>
+                                    <DropdownMenuItem>Download</DropdownMenuItem>
+                                    <Link href={`/fill-out?template=${template.id}`}>
+                                        <DropdownMenuItem>Fill Out</DropdownMenuItem>
+                                    </Link>
+                                    <AlertDialog>
+                                        <AlertDialogTrigger asChild>
+                                            <DropdownMenuItem className="text-red-600">
                                                 Delete
-                                            </AlertDialogAction>
-                                        </AlertDialogFooter>
-                                    </AlertDialogContent>
-                                </AlertDialog>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+                                            </DropdownMenuItem>
+                                        </AlertDialogTrigger>
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>Delete Template</AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                    Are you sure you want to delete &quot;{template.name}&quot;? This action cannot be undone.
+                                                </AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                                <AlertDialogAction
+                                                    onClick={() => handleDelete(template)}
+                                                    className="bg-red-600 hover:bg-red-700"
+                                                >
+                                                    Delete
+                                                </AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

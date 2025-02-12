@@ -79,6 +79,22 @@ body {
 }
 
 @layer base {
+  .tiptap p {
+    margin: 1em 0; /* Adjust paragraph spacing */
+  }
+  
+  .tiptap h1 {
+    font-size: 2em; /* Adjust heading 1 size */
+    margin: 1.5em 0; /* Adjust heading 1 spacing */
+  }
+  
+  .tiptap h2 {
+    font-size: 1.5em; /* Adjust heading 2 size */
+    margin: 1.25em 0; /* Adjust heading 2 spacing */
+  }
+}
+
+@layer base {
   * {
     @apply border-border;
   }
