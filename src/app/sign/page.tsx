@@ -11,7 +11,7 @@ export default function Home() {
                     <EmbedPDF
                         mode="inline"
                         style={{ width: 900, height: 800 }}
-                        documentURL="sales_agreement_template.pdf"
+                        documentURL="donation-receipt.pdf"
                     />
                 </div>
                 <div className="w-1/2 flex items-center justify-center relative px-8">

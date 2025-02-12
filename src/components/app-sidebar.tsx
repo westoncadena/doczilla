@@ -1,4 +1,4 @@
-import { Edit, Home, Inbox, Settings, Signature } from "lucide-react"
+import { Edit, Home, Inbox, Settings, Signature, FileText } from "lucide-react"
 
 import {
     Sidebar,
@@ -31,7 +31,7 @@ const items = [
     {
         title: "Fill Out",
         url: "/fill-out",
-        icon: Edit,
+        icon: FileText,
     },
     {
         title: "Sign",

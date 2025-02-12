@@ -126,7 +126,7 @@ export default function ChatSupport({ onResponse }: ChatSupportProps) {
     };
 
     return (
-        <ExpandableChat size="xl" position="bottom-right">
+        <ExpandableChat size="lg" position="bottom-right">
             <ExpandableChatHeader className="bg-muted/60 flex-col text-center justify-center">
                 <h1 className="text-xl font-semibold">Chat with Zilla</h1>
                 <p>Use Zilla to create and edit pdf templates</p>
