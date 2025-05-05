@@ -1,4 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Doczilla
+
+**AI assistant for repetitive and complex paperwork**  
+
+---
+
+## What is Doczilla?
+
+Doczilla is an AI agent designed to automate the most tedious parts of paperwork. It listens to calls, reads chats, and pulls data from CRMs and past documents to generate and auto-fill paperwork—instantly. Our goal is to replace the billions of hours spent on paperwork with seamless, AI-powered document creation and distribution, so people can focus on what matters most.
+
+---
+
+## Features
+
+- **AI-powered document generation:** Automatically creates and fills out documents using information from calls, chats, CRMs, and previous paperwork.
+- **Seamless integration:** Connects with your existing tools and workflows.
+- **Instant distribution:** Documents are ready to send or file as soon as they're generated.
+- **Privacy-first:** Your data is handled securely and confidentially.
+
+---
 
 ## Getting Started
 
@@ -14,23 +33,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
